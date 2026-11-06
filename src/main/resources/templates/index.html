@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de OS - Oficina</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">Oficina - Gestão de O.S.</span>
+    </div>
+</nav>
+
+<div class="container pb-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="card-title text-primary m-0">Últimos Serviços</h4>
+                <a href="/nova-os" class="btn btn-success">Nova O.S.</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Data</th>
+                        <th>Veículo</th>
+                        <th>Serviço</th>
+                        <th>Valor (R$)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Loop do Thymeleaf que percorre a lista de ordens -->
+                    <tr th:each="os : ${ordens}">
+                        <td th:text="${#temporals.format(os.dataRegisto, 'dd/MM/yyyy HH:mm')}">Data</td>
+                        <td>
+                            <strong th:text="${os.veiculo.matricula}">Placa</strong><br>
+                            <small class="text-muted" th:text="${os.veiculo.marcaModelo}">Modelo</small>
+                        </td>
+                        <td th:text="${os.descricao}">Descricao</td>
+                        <td th:text="${os.valorTotal}">0.00</td>
+                    </tr>
+
+                    <!-- Mensagem se a lista estiver vazia -->
+                    <tr th:if="${#lists.isEmpty(ordens)}">
+                        <td colspan="4" class="text-center text-muted py-4">Nenhuma ordem de serviço cadastrada ainda.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Ordem de Serviço</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">Oficina - Gestão de O.S.</span>
+        <a href="/" class="btn btn-sm btn-outline-light">Voltar</a>
+    </div>
+</nav>
+
+<div class="container pb-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title text-primary mb-4">Registar Novo Serviço</h4>
+
+            <form action="/nova-os" method="post">
+                <h6 class="text-muted border-bottom pb-2">Dados do Veículo</h6>
+                <div class="mb-3">
+                    <label class="form-label">Matrícula</label>
+                    <input type="text" class="form-control" name="matricula" required placeholder="Ex: ABC-1234">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Marca e Modelo</label>
+                    <input type="text" class="form-control" name="marcaModelo" required placeholder="Ex: Ford Mondeo">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Cliente (Opcional)</label>
+                    <input type="text" class="form-control" name="clienteReferencia" placeholder="Nome do dono">
+                </div>
+
+                <h6 class="text-muted border-bottom pb-2">Detalhes do Serviço</h6>
+                <div class="mb-3">
+                    <label class="form-label">Descrição da Reparação</label>
+                    <textarea class="form-control" name="descricao" rows="3" required placeholder="Peças trocadas e serviços feitos..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Valor Total (R$)</label>
+                    <input type="number" step="0.01" class="form-control" name="valorTotal" required placeholder="0.00">
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 py-2">Guardar Ordem de Serviço</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

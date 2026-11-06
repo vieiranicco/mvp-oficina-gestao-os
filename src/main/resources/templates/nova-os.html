@@ -49,5 +49,75 @@
         </div>
     </div>
 </div>
+<style>
+    /* Fundo num tom de cinza chumbo, muito mais suave que o preto puro */
+    body.alto-contraste {
+        background-color: #212529 !important;
+        color: #f8f9fa !important;
+    }
+
+    /* Linhas da tabela num cinza médio para dar estrutura sem berrar */
+    body.alto-contraste div,
+    body.alto-contraste table,
+    body.alto-contraste tbody,
+    body.alto-contraste tr,
+    body.alto-contraste td,
+    body.alto-contraste header,
+    body.alto-contraste footer {
+        background-color: transparent !important;
+        color: #f8f9fa !important;
+        border-color: #495057 !important;
+    }
+
+    /* Destaques em Ciano (Azul Claro) */
+    body.alto-contraste h1,
+    body.alto-contraste h2,
+    body.alto-contraste h3,
+    body.alto-contraste h4,
+    body.alto-contraste th {
+        color: #0dcaf0 !important;
+        background-color: transparent !important;
+        border-bottom: 2px solid #0dcaf0 !important;
+    }
+
+    /* Botões modernos em Ciano com texto escuro */
+    body.alto-contraste button,
+    body.alto-contraste .btn,
+    body.alto-contraste a.btn {
+        background-color: #0dcaf0 !important;
+        color: #000000 !important;
+        font-weight: bold !important;
+        border: none !important;
+        border-radius: 6px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+    }
+</style>
+
+<!-- Botão flutuante chamando a nova função JavaScript -->
+<button onclick="alternarAltoContraste()"
+        style="position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; background-color: #343a40; color: #0dcaf0; border: 2px solid #0dcaf0; border-radius: 6px; cursor: pointer; z-index: 9999; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.5);">
+    Alternar Alto Contraste
+</button>
+
+<!-- Script que gerencia a memória do Alto Contraste -->
+<script>
+    // 1. Assim que a página carrega, verifica se o modo já estava ativado no navegador
+    if (localStorage.getItem('modoAltoContraste') === 'ativado') {
+        document.body.classList.add('alto-contraste');
+    }
+
+    // 2. Função que liga/desliga o modo e salva a escolha para as outras páginas
+    function alternarAltoContraste() {
+        const corpo = document.body;
+        corpo.classList.toggle('alto-contraste');
+
+        // Se ativou, salva no Local Storage. Se desativou, remove.
+        if (corpo.classList.contains('alto-contraste')) {
+            localStorage.setItem('modoAltoContraste', 'ativado');
+        } else {
+            localStorage.setItem('modoAltoContraste', 'desativado');
+        }
+    }
+</script>
 </body>
 </html>
